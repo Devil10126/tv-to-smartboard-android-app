@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- Camera Preview -->
+    <TextureView
+        android:id="@+id/texture_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/main_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Screen Corner Detection Overlay -->
+    <com.android.tvtosmartboard.CornerDetectionView
+        android:id="@+id/corner_detection_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@id/texture_view"
+        app:layout_constraintBottom_toBottomOf="@id/texture_view"
+        app:layout_constraintStart_toStartOf="@id/texture_view"
+        app:layout_constraintEnd_toEndOf="@id/texture_view" />
+
+    <!-- Drawing Overlay -->
+    <com.android.tvtosmartboard.DrawingView
+        android:id="@+id/drawing_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@id/texture_view"
+        app:layout_constraintBottom_toBottomOf="@id/texture_view"
+        app:layout_constraintStart_toStartOf="@id/texture_view"
+        app:layout_constraintEnd_toEndOf="@id/texture_view" />
+
+    <!-- PowerPoint Presentation View -->
+    <com.android.tvtosmartboard.PresentationView
+        android:id="@+id/presentation_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/texture_view"
+        app:layout_constraintBottom_toBottomOf="@id/texture_view"
+        app:layout_constraintStart_toStartOf="@id/texture_view"
+        app:layout_constraintEnd_toEndOf="@id/texture_view" />
+
+    <!-- Main Toolbar -->
+    <LinearLayout
+        android:id="@+id/main_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#2C2C2C"
+        android:padding="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/tool_options_panel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btn_pen"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Pen"
+            android:textColor="#FFFFFF"
+            android:background="#4CAF50"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_brush"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Brush"
+            android:textColor="#FFFFFF"
+            android:background="#2196F3"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_highlighter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Highlight"
+            android:textColor="#000000"
+            android:background="#FFEB3B"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_eraser"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Eraser"
+            android:textColor="#FFFFFF"
+            android:background="#FF5722"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_lasso"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Lasso"
+            android:textColor="#FFFFFF"
+            android:background="#9C27B0"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Clear"
+            android:textColor="#FFFFFF"
+            android:background="#607D8B"
+            android:layout_margin="2dp" />
+
+    </LinearLayout>
+
+    <!-- Tool Options Panel -->
+    <LinearLayout
+        android:id="@+id/tool_options_panel"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:background="#1C1C1C"
+        android:padding="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Color Palette -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/color_palette"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+
+        <!-- Size Slider -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Size"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/size_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="50"
+                android:progress="10" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Bottom Toolbar -->
+    <LinearLayout
+        android:id="@+id/bottom_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#2C2C2C"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btn_open_ppt"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Open PPT"
+            android:textColor="#FFFFFF"
+            android:background="#FF9800"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_save_pdf"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Save PDF"
+            android:textColor="#FFFFFF"
+            android:background="#795548"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_calibrate"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Calibrate"
+            android:textColor="#FFFFFF"
+            android:background="#3F51B5"
+            android:layout_margin="2dp" />
+
+        <Button
+            android:id="@+id/btn_cast"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Cast"
+            android:textColor="#FFFFFF"
+            android:background="#E91E63"
+            android:layout_margin="2dp" />
+
+    </LinearLayout>
+
+    <!-- Cast Connection Status -->
+    <TextView
+        android:id="@+id/tv_cast_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not Connected to TV"
+        android:textColor="#FF0000"
+        android:textSize="14sp"
+        android:background="#80000000"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="8dp" />
+
+    <!-- Calibration Status -->
+    <TextView
+        android:id="@+id/tv_calibration_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Screen Not Detected"
+        android:textColor="#FFFF00"
+        android:textSize="14sp"
+        android:background="#80000000"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_cast_status"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="8dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
